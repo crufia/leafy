@@ -3,3 +3,4 @@ doc
 pkg
 *.lock
 *.jar
+pom.*.xml

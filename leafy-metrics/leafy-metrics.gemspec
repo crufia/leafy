@@ -7,6 +7,7 @@ Gem::Specification.new do |s|
   s.version = Leafy::Metrics::VERSION
   s.author = 'christian meier'
   s.email = [ 'christian.meier@lookout.com' ]
+  s.platform = 'java'
   
   s.platform = 'java'
   s.license = 'MIT'
@@ -21,6 +22,8 @@ Gem::Specification.new do |s|
   s.requirements << "jar io.dropwizard.metrics:metrics-graphite, #{METRICS_VERSION}"
   s.requirements << "jar io.dropwizard.metrics:metrics-jvm, #{METRICS_VERSION}"
   s.requirements << "jar org.slf4j, slf4j-simple, 1.7.7, :scope => :test"
+  s.requirements << "jar org.jruby:jruby-core, 1.7.20-SNAPSHOT, :scope => :provided"
+  s.requirements << "jar org.jruby:jruby-stdlib, 1.7.20-SNAPSHOT, :scope => :provided"
 
   s.add_runtime_dependency 'jar-dependencies', '~> 0.1.8'
   s.add_development_dependency 'rspec', '~> 3.1'

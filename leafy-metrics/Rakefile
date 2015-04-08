@@ -1,7 +1,16 @@
 #-*- mode: ruby -*-
 
+require 'maven/ruby/maven'
+
+mvn = Maven::Ruby::Maven.new
+
+desc "Pack leafy-metrics.jar with the compiled classes"
+task :jar do
+  mvn.prepare_package '-Dmaven.test.skip'
+end
+
 require "rspec/core/rake_task"
-RSpec::Core::RakeTask.new
+RSpec::Core::RakeTask.new( :spec => :jar )
 
 require "yard"
 YARD::Rake::YardocTask.new do |t|
@@ -10,5 +19,11 @@ YARD::Rake::YardocTask.new do |t|
 end
 
 task :default => [ :spec ]
+
+require 'rubygems/package_task'
+Gem::PackageTask.new( eval File.read( './leafy-metrics.gemspec' ) ) do
+  desc 'Pack leafy-metrics.gem'
+  task :package => [:jar]
+end
 
 # vim: syntax=Ruby

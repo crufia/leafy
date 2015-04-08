@@ -66,8 +66,12 @@ module Leafy
       # 
       # @param [String] name
       # @return [Java::ComCodahaleMetrics::Meter] meter object which has a 'mark' method to mark the meter
-      def register_meter( name )
-        @metrics.meter( name )
+      def register_meter( name, meter = nil )
+        if meter
+          @metrics.register( name, meter )
+        else
+          @metrics.meter( name )
+        end
       end
       
       # register a counter under a given name
